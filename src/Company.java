@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 
 
 public class Company {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
 
         Logger logger = Logger.getAnonymousLogger();
 
