@@ -1,6 +1,7 @@
 import java.sql.*;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 
 public class MySqlAccess {
@@ -8,13 +9,17 @@ public class MySqlAccess {
     private Statement statement = null;
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
+    Logger logger = Logger.getAnonymousLogger();
 
-    public void setConnect() {
+
+    public void setConnect(String user, String password) {
         try {
+            logger.info("Inside :: setConnect()");
             DriverManager.registerDriver(new com.mysql.jdbc.Driver ());
             connect = DriverManager
                     .getConnection("jdbc:mysql://localhost/employee_system"
-                            ,"root","");
+                            ,user,password);
+            logger.info("Connected..!");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -27,17 +32,17 @@ public class MySqlAccess {
         connect = DriverManager
                 .getConnection("jdbc:mysql://localhost/employee_system?"
                         ,"root","");
-
+        logger.info("Inside :: readDatabase()");
         statement = connect.createStatement();
 
         resultSet = statement.executeQuery(query);
-
+        logger.info("Executed query :: " + query);
         return resultSet;
     }
 
     public int insertIntoEmployeeTable(Long id, String name, Long age, String department, Long salary, Date date) throws SQLException {
 
-
+        logger.info("Inside :: insertIntoEmployeeTable()");
         preparedStatement = connect
                 .prepareStatement("INSERT INTO EMPLOYEES VALUES(?, ?, ?, ?, ?, ?)");
 
@@ -48,6 +53,7 @@ public class MySqlAccess {
         preparedStatement.setLong(5, salary);
         preparedStatement.setDate(6, new java.sql.Date(date.getTime()));
 
+        logger.info("Exiting :: insertIntoEmployeeTable()");
        return preparedStatement.executeUpdate();
     }
 

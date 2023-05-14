@@ -13,7 +13,7 @@ public class Company {
                 "Software", 90000L,new Date());
 
         MySqlAccess sqlAccess = new MySqlAccess();
-        sqlAccess.setConnect();
+        sqlAccess.setConnect("root", "");
         try {
            int insertionResponse = sqlAccess.insertIntoEmployeeTable((long) sqlAccess.readDatabase("select * from employees").getRow(),employee.getName(), employee.getAge(),
                    employee.getDepartment(), employee.getSalary(), new java.sql.Date(employee.getDate().getTime()));
