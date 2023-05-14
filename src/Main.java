@@ -29,7 +29,6 @@ class PrimeThread extends Thread {
     }
 
     public void run() {
-        // compute primes larger than minPrime
               if(isOdd % 2 != 0 ) {
                   System.out.println("Is Odd");
               }else
