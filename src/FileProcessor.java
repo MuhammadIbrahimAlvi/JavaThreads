@@ -1,20 +1,18 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.List;
+import java.util.Map;
 
 public class FileProcessor implements Runnable{
-    private String filename;
+    private List<Map<Long, Employee.Builder>> employeeMapList;
 
-    public FileProcessor(String filename) {
-        this.filename = filename;
+    public FileProcessor(List<Map<Long,Employee.Builder>> employeeMapList) {
+        this.employeeMapList = employeeMapList;
     }
 
     @Override
     public void run() {
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(this.filename));
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 }
