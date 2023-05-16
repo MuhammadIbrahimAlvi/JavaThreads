@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.logging.Logger;
 
 public class FileReader implements Runnable{
-    Logger logger = Logger.getAnonymousLogger();
+    private static final Logger logger = Logger.getLogger(FileWrite.class.getName());
 
     @Override
     public void run() {

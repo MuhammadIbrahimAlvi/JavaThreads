@@ -7,7 +7,8 @@ import java.util.logging.Logger;
 public class Company {
     public static void main(String[] args) {
 
-        Logger logger = Logger.getAnonymousLogger();
+        final Logger logger = Logger.getLogger(FileWrite.class.getName());
+
 
         Employee.Builder employee = new Employee.Builder("Ibrahim", 24L,
                 "Software", 90000L,new Date());
@@ -24,6 +25,9 @@ public class Company {
            }
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
+        } finally {
+            logger.info("Starting finally Statement.");
+            new Thread(new FileReader()).start();
         }
     }
 }
