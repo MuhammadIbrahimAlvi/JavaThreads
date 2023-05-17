@@ -1,1 +1,1 @@
-Name:John Doe	Department: Marketing	Age: 30	 Hire Date:2020-01-01	Salary:70000ry:90000
+Name:Ibrahim	Department: Software	Age: 24	 Hire Date:2023-05-14	Salary:90000

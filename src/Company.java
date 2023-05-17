@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 
 
 public class Company {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         final Logger logger = Logger.getLogger(FileWrite.class.getName());
 
@@ -27,7 +27,9 @@ public class Company {
             throw new RuntimeException(e);
         } finally {
             logger.info("Starting finally Statement.");
-            new Thread(new FileReader()).start();
+           Thread fileReaderThreadHandler = new Thread(new FileReader());
+            fileReaderThreadHandler.start();
+            fileReaderThreadHandler.join();
         }
     }
 }

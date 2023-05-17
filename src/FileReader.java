@@ -26,8 +26,10 @@ public class FileReader implements Runnable{
                builderMap.put(id, employee);
                employeeList.add(builderMap);
            }
-           new Thread(new FileProcessor(employeeList)).start();
-        } catch (ClassNotFoundException | SQLException e) {
+           Thread fileProcessorHandler = new Thread(new FileProcessor(employeeList));
+           fileProcessorHandler.start();
+           fileProcessorHandler.join();
+        } catch (ClassNotFoundException | SQLException | InterruptedException e) {
             throw new RuntimeException(e);
         }
 
