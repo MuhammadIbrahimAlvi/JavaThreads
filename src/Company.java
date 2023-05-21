@@ -15,8 +15,10 @@ public class Company {
 
         MySqlAccess sqlAccess = new MySqlAccess();
         sqlAccess.setConnect("root", "");
+        Thread fileReaderThreadHandler = new Thread(new FileReader());
         try {
-           int insertionResponse = sqlAccess.insertIntoEmployeeTable((long) sqlAccess.readDatabase("select * from employees").getRow(),employee.getName(), employee.getAge(),
+            fileReaderThreadHandler.start();
+            int insertionResponse = sqlAccess.insertIntoEmployeeTable((long) sqlAccess.readDatabase("select * from employees").getRow(),employee.getName(), employee.getAge(),
                    employee.getDepartment(), employee.getSalary(), new java.sql.Date(employee.getDate().getTime()));
            if(Objects.equals(insertionResponse, 1)){
                logger.info("Successfully inserted.");
@@ -27,8 +29,6 @@ public class Company {
             throw new RuntimeException(e);
         } finally {
             logger.info("Starting finally Statement.");
-           Thread fileReaderThreadHandler = new Thread(new FileReader());
-            fileReaderThreadHandler.start();
             fileReaderThreadHandler.join();
         }
     }
